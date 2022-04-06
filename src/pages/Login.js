@@ -81,33 +81,38 @@ export default class LoginPage extends React.Component {
 
         var errors = <span></span>
         if (this.state.errors.length > 0) {
-            errors = <div className='alert alert-danger'>
-                <ul>
+            errors = <div>
+                <br/>
+                <div className='alert alert-danger'>
                     {
-                        this.state.errors.map((item, i) => <li key={i}>{item}</li>)
+                        this.state.errors.map((item, i) => <div><span key={i}>{item}</span><br/></div>)
                     }
-                </ul>
+                </div>
             </div>
         }
-        return <div className='container'>
-            <h2>Login</h2>
-
-            {errors}
-
-            <form className='form-group' onSubmit={this.submitHandler}>
-                Username or Email:
-                <input required maxLength='255' value={this.state.username} type='text' onChange={this.usernameChangeHandler} className='form-control' placeholder='Enter your username or your email' />
-
-                <br />
-
-                Password:
-                <input required value={this.state.password} type='password' onChange={this.passwordChangeHandler} className='form-control' placeholder='Enter your password' />
-
-                <br />
-
-                <input type='submit' className='btn btn-success' value={this.state.isLoading ? 'Login...' : 'Login'} />
-            </form>
-	    <Link to="/reset-password">Forgot password?</Link>
+        return <div className='container' style={{'textAlign': 'left'}}>
+            <div className='col-md-4'>
+                <div className='card-body border shadow rounded-3'>
+                    <h3>Login</h3>
+                    <br/>
+                    <form className='form-group' onSubmit={this.submitHandler}>
+                        <label className='form-label' htmlFor='email'>Username or Email:</label>
+                        <input required maxLength='255' id='email' value={this.state.username} type='text' onChange={this.usernameChangeHandler} className='form-control' placeholder='Enter your username or your email' />
+                        <br/>
+                        <label className='form-label' htmlFor='pass'>Password:</label>
+                        <input required value={this.state.password} id='pass' type='password' onChange={this.passwordChangeHandler} className='form-control' placeholder='Enter your password' />
+                        <br />
+                        <input type='submit' className='btn btn-success w-100' value={this.state.isLoading ? 'Login...' : 'Login'} />
+                    </form>
+                    <br/>
+                    <br/>
+                    <Link to="/register">Do not have an account?</Link>
+                    <br/>
+                    <Link to="/reset-password">Forgot password?</Link>
+                    <br/>
+                    {errors}
+                </div>
+            </div>
         </div>
     }
 }
