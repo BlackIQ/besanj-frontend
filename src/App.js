@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from './logo.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import IndexPage from './pages/Index'
 import LoginPage from './pages/Login'
@@ -13,6 +12,9 @@ import SinglePollPage from './pages/SinglePoll'
 import CreatePollPage from './pages/CreatePoll'
 import ResetPasswordPage from './pages/ResetPassword'
 import Api, { check_auth } from './Api'
+
+import 'mdb-ui-kit/css/mdb.min.css';
+import 'mdb-ui-kit/js/mdb.min.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -84,18 +86,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          {nav_links}
-          <Routes>
-            <Route exact path='/' element={<IndexPage />} />
-            <Route exact path='/register' element={<RegisterPage parentHandler={this.setIsAuth} />} />
-            <Route exact path='/login' element={<LoginPage parentHandler={this.setIsAuth} />} />
-            <Route exact path='/my-votes' element={<MyVotesPage />} />
-            <Route exact path='/create-poll' element={<CreatePollPage />} />
-            <Route path='/user/:id/:name' element={<UserPage />} />
-            <Route path='/user-comments/:id/:name' element={<UserCommentsPage />} />
-            <Route path='/poll/:id' element={<SinglePollPage />} />
-            <Route path='/reset-password' element={<ResetPasswordPage />} />
-          </Routes>
+          <nav className='navbar navbar-light bg-white'>
+            <div className='container'>
+              <a className='navbar-brand'>Home</a>
+            </div>
+          </nav>
+          <div className='py-4'>
+            <Routes>
+              <Route exact path='/' element={<IndexPage />} />
+              <Route exact path='/register' element={<RegisterPage parentHandler={this.setIsAuth} />} />
+              <Route exact path='/login' element={<LoginPage parentHandler={this.setIsAuth} />} />
+              <Route exact path='/my-votes' element={<MyVotesPage />} />
+              <Route exact path='/create-poll' element={<CreatePollPage />} />
+              <Route path='/user/:id/:name' element={<UserPage />} />
+              <Route path='/user-comments/:id/:name' element={<UserCommentsPage />} />
+              <Route path='/poll/:id' element={<SinglePollPage />} />
+              <Route path='/reset-password' element={<ResetPasswordPage />} />
+            </Routes>
+          </div>
         </Router>
       </div>
     );
